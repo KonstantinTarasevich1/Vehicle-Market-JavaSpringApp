@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VehicleMarket</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container mt-5">
+    <h1>Select a type of vehicle you want to add</h1>
+    <div class="d-flex justify-content-around mt-4">
+        <a href="/add-boat" th:href="@{/boats/add-boat}" class="btn btn-primary">Boats</a>
+        <a href="/add-car" th:href="@{/cars/add-car}" class="btn btn-primary">Cars</a>
+        <a href="/add-truck" th:href="@{/trucks/add-truck}" class="btn btn-primary">Trucks</a>
+        <a href="/add-motorcycle" th:href="@{/motorcycles/add-motorcycle}" class="btn btn-primary">Motorcycles</a>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

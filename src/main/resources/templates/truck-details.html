@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruckDetails</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container-fluid">
+    <h2 class="text-center text-white mt-5">Truck Details</h2>
+    <div
+            th:object="${truckDetails}"
+            class="offers row mx-auto d-flex flex-row justify-content-center">
+        <div class="offer card col-sm-2 col-md-3 col-lg-4 m-1 p-0">
+            <ul class="offer-details list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="image-container">
+                        <img th:src="${truckDetails.imageURL}" alt="Truck Image"/>
+                    </div>
+                    <div class="card-text">Name: <span th:text="${truckDetails.name}">Name</span></div>
+                    <div class="card-text">Brand: <span th:text="${truckDetails.brand}">Brand</span></div>
+                    <div class="card-text">Model: <span th:text="${truckDetails.model}">Model</span></div>
+                    <div class="card-text">Truck Type: <span th:text="${truckDetails.truckType}">Truck Type</span></div>
+                    <div class="card-text">Production Year: <span th:text="${truckDetails.productionYear}">Production Year</span></div>
+                    <div class="card-text">Load Capacity: <span th:text="${truckDetails.loadCapacity}">Load Capacity</span></div>
+                    <div class="card-text">Price: <span th:text="${truckDetails.price}">Price</span></div>
+                    <div class="card-text">Description: <span th:text="${truckDetails.description}">Description</span></div>
+                    <div class="card-text">Owner Phone Number: <span th:text="${truckDetails.ownerPhone}">Owner Phone Number</span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+.footer {
+    position: page;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #8eb4e3;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.hidden{
+    display: none;
+}

@@ -1,0 +1,17 @@
+
+spring:
+  application:
+    name: ExRatesService
+  datasource:
+    url: jdbc:hsqldb:mem:testdb
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    username:
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.HSQLDialect
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Truck</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container mt-5">
+    <form class="welcome add-truck-form"
+          th:action="@{/trucks/add-truck}"
+          th:object="${truckData}"
+          th:method="POST">
+        <h1 class="text-center mt-2"><span>Add Truck</span></h1>
+
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="name" class="h4 mb-2">Name</label>
+            <small class="form-text text-muted">Enter the name of the truck.</small>
+            <input type="text" class="form-control" id="name" name="name" th:field="*{name}" th:errorclass="'is-invalid alert-danger'" required minlength="2" maxlength="50"/>
+            <small th:each="error: ${#fields.errors('name')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Brand Field -->
+        <div class="form-group">
+            <label for="brand" class="h4 mb-2">Brand</label>
+            <small class="form-text text-muted">Enter the brand of the truck.</small>
+            <input type="text" class="form-control" id="brand" name="brand" th:field="*{brand}" th:errorclass="'is-invalid alert-danger'" required minlength="2" maxlength="50"/>
+            <small th:each="error: ${#fields.errors('brand')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Model Field -->
+        <div class="form-group">
+            <label for="model" class="h4 mb-2">Model</label>
+            <small class="form-text text-muted">Enter the model of the truck.</small>
+            <input type="text" class="form-control" id="model" name="model" th:field="*{model}" th:errorclass="'is-invalid alert-danger'" required minlength="1" maxlength="50"/>
+            <small th:each="error: ${#fields.errors('model')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Image URL Field -->
+        <div class="form-group">
+            <label for="imageURL" class="h4 mb-2">Image URL</label>
+            <small class="form-text text-muted">Enter the URL for the truck's image.</small>
+            <input type="text" class="form-control" id="imageURL" name="imageURL" th:field="*{imageURL}" th:errorclass="'is-invalid alert-danger'" required minlength="1" maxlength="50"/>
+            <small th:each="error: ${#fields.errors('imageURL')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Production Year Field -->
+        <div class="form-group">
+            <label for="productionYear" class="h4 mb-2">Production Year</label>
+            <small class="form-text text-muted">Enter the truck's production year.</small>
+            <input type="text" class="form-control" id="productionYear" name="productionYear" th:field="*{productionYear}" th:errorclass="'is-invalid alert-danger'" required min="0" maxlength="4"/>
+            <small th:each="error: ${#fields.errors('productionYear')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Truck Type Field -->
+        <div class="form-group">
+            <label for="truckType" class="h4 mb-2">Truck Type</label>
+            <small class="form-text text-muted">Select the type of the truck.</small>
+            <select
+                    class="browser-default custom-select"
+                    id="truckType"
+                    name="truckType"
+                    th:field="*{truckType}"
+                    th:errorclass="'is-invalid alert-danger'" required
+            >
+                <option value="">Select Truck Type</option>
+                <option value="DUMP">Dump</option>
+                <option value="REFRIGERATOR">Refrigerator</option>
+                <option value="TANK">Tank</option>
+                <option value="LORRY">Lorry</option>
+            </select>
+            <small th:each="error: ${#fields.errors('truckType')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Load Capacity Field -->
+        <div class="form-group">
+            <label for="loadCapacity" class="h4 mb-2">Load Capacity</label>
+            <small class="form-text text-muted">Enter the truck's load capacity in kilograms.</small>
+            <input type="text" class="form-control" id="loadCapacity" name="loadCapacity" th:field="*{loadCapacity}" th:errorclass="'is-invalid alert-danger'" required min="0"/>
+            <small th:each="error: ${#fields.errors('loadCapacity')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+        <!-- Fuel Consumption Field -->
+        <div class="form-group">
+            <label for="fuelConsumption" class="h4 mb-2">Fuel Consumption</label>
+            <small class="form-text text-muted">Enter the truck's fuel consumption in liters per 100 km.</small>
+            <input type="text" class="form-control" id="fuelConsumption" name="fuelConsumption" th:field="*{fuelConsumption}" th:errorclass="'is-invalid alert-danger'"/>
+            <small th:each="error: ${#fields.errors('fuelConsumption')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group">
+            <label for="description" class="h4 mb-2">Description</label>
+            <small class="form-text text-muted">Enter a description of the truck.</small>
+            <textarea class="form-control" id="description" name="description" th:field="*{description}" th:errorclass="'is-invalid alert-danger'" required minlength="1" maxlength="200"></textarea>
+            <small th:each="error: ${#fields.errors('description')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Price Field -->
+        <div class="form-group">
+            <label for="price" class="h4 mb-2">Price</label>
+            <small class="form-text text-muted">Enter the price of the truck in USD.</small>
+            <input type="text" class="form-control" id="price" name="price" th:field="*{price}" th:errorclass="'is-invalid alert-danger'" required min="0"/>
+            <small th:each="error: ${#fields.errors('price')}" th:text="${error}" class="invalid-feedback text-danger"></small>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success btn-lg">Add Truck</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

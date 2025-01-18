@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container mt-5">
+    <h1>Profile</h1>
+    <p>Manage your profile here.</p>
+
+    <div class="d-flex justify-content-between mb-3">
+        <div>
+            <!-- Delete User Form -->
+            <form th:action="@{/users/delete/{id}(id=${id})}" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <button type="submit" class="btn btn-danger">Delete Profile</button>
+            </form>
+            <a class="btn-link" href="/admin-panel"
+               sec:authorize="hasRole('ADMIN')"
+               th:classappend="${activeLink == 'admin-panel'} ? 'active'">Admin Panel</a>
+        </div>
+    </div>
+
+    <!-- Cars Table -->
+    <h2>Cars</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Type</th>
+            <th>Horsepower</th>
+            <th>Engine Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${car.name}"></td>
+            <td th:text="${car.brand}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.productionYear}"></td>
+            <td th:text="${car.carType}"></td>
+            <td th:text="${car.horsepower}"></td>
+            <td th:text="${car.engineType}"></td>
+            <td>
+                <!-- Delete Car Form -->
+                <form th:action="@{/cars/delete/{id}(id=${car.id})}" th:method="DELETE" onsubmit="return confirm('Are you sure you want to delete this car?');">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Boats Table -->
+    <h2>Boats</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="boat : ${boats}">
+            <td th:text="${boat.id}"></td>
+            <td th:text="${boat.name}"></td>
+            <td th:text="${boat.brand}"></td>
+            <td th:text="${boat.model}"></td>
+            <td th:text="${boat.productionYear}"></td>
+            <td th:text="${boat.boatType}"></td>
+            <td>
+                <!-- Delete Boat Form -->
+                <form th:action="@{/boats/delete/{id}(id=${boat.id})}" th:method="DELETE" onsubmit="return confirm('Are you sure you want to delete this boat?');">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Motorcycles Table -->
+    <h2>Motorcycles</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Horsepower</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="motorcycle : ${motorcycles}">
+            <td th:text="${motorcycle.id}"></td>
+            <td th:text="${motorcycle.name}"></td>
+            <td th:text="${motorcycle.brand}"></td>
+            <td th:text="${motorcycle.model}"></td>
+            <td th:text="${motorcycle.productionYear}"></td>
+            <td th:text="${motorcycle.horsePower}"></td>
+            <td>
+                <!-- Delete Motorcycle Form -->
+                <form th:action="@{/motorcycles/delete/{id}(id=${motorcycle.id})}" th:method="DELETE" onsubmit="return confirm('Are you sure you want to delete this motorcycle?');">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Trucks Table -->
+    <h2>Trucks</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Type</th>
+            <th>Load Capacity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="truck : ${trucks}">
+            <td th:text="${truck.id}"></td>
+            <td th:text="${truck.name}"></td>
+            <td th:text="${truck.brand}"></td>
+            <td th:text="${truck.model}"></td>
+            <td th:text="${truck.productionYear}"></td>
+            <td th:text="${truck.truckType}"></td>
+            <td th:text="${truck.loadCapacity}"></td>
+            <td>
+                <!-- Delete Truck Form -->
+                <form th:action="@{/trucks/delete/{id}(id=${truck.id})}" th:method="DELETE" onsubmit="return confirm('Are you sure you want to delete this truck?');">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Exchange Rates</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container">
+    <h1>Exchange Rates</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Currency</th>
+            <th>Rate</th>
+            <th sec:authorize="hasRole('ADMIN')">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rate : ${rates}">
+            <td th:text="${rate.currency}"></td>
+            <td th:text="${rate.rate}"></td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <form th:action="@{/rates/{id}(id=${rate.id})}" method="post" th:method="delete">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Add Custom Exchange Rate</h2>
+    <form th:action="@{/rates}" method="post">
+        <div class="form-group">
+            <label for="currency">Currency</label>
+            <input type="text" class="form-control" id="currency" name="currency" required>
+        </div>
+        <div class="form-group">
+            <label for="rate">Rate</label>
+            <input type="text" class="form-control" id="rate" name="rate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Rate</button>
+    </form>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
